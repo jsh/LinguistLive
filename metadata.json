@@ -1,0 +1,7 @@
+{
+  "name": "Copy of LinguistLive AI",
+  "description": "A real-time language learning application featuring AI-powered voice conversations for immersive practice in multiple languages.",
+  "requestFramePermissions": [
+    "microphone"
+  ]
+}
