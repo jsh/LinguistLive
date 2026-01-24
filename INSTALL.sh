@@ -3,7 +3,7 @@
 die() { echo "$@"; exit -1; }                                                           # print error message and die
 
 npm_installed() {                                                                       # install npm if needed
-    type -t npm > /dev/null ||
+    type -t npm ||
         case $(uname -s) in
             Linux)
                 sudo apt-get update -y -qq &&                                           # apt package mgr
@@ -12,7 +12,7 @@ npm_installed() {                                                               
             Darwin) brew install npm ;;                                                 # Homebrew package mgr
             *) false ;;                                                                 # anything else, just bail
         esac
-}
+} > /dev/null
 
 api_key_present() {                                                                     # is GEMINI_API_KEY set and exported?
     [ -n "$GEMINI_API_KEY" ]
