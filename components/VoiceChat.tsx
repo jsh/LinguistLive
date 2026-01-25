@@ -73,7 +73,7 @@ const VoiceChat: React.FC<VoiceChatProps> = ({ language, scenario, level }) => {
         'Advanced': 'Speak at a native speed. Use complex vocabulary, slang, and cultural references. Challenge the user to defend their opinions or use higher-level grammar.'
       };
 
-      const systemInstruction = `
+      let systemInstruction = `
         You are an immersive language practice partner for someone learning ${language.name}.
         The user's proficiency level is: ${level}.
         The current scenario is: ${scenario.title}.
@@ -89,6 +89,20 @@ const VoiceChat: React.FC<VoiceChatProps> = ({ language, scenario, level }) => {
         - Be enthusiastic and patient.
         - Start by greeting the user and initiating the scenario immediately in ${language.name}.
       `;
+ 
+      if (language.name === 'Latin') {
+        const classicalRules = `
+CRITICAL: YOU MUST USE RESTORED CLASSICAL PRONUNCIATION.
+- NEVER use Ecclesiastical (Church) pronunciation.
+- THE LETTER 'V' IS ALWAYS /w/ (like 'wine'), NEVER /v/.
+- THE LETTER 'C' IS ALWAYS HARD /k/ (like 'cat'), NEVER /ch/ or /s/.
+- THE LETTER 'G' IS ALWAYS HARD /g/ (like 'get'), NEVER /j/.
+- THE DIPHTHONG 'AE' IS /ai/ (like 'eye'), NEVER /ay/.
+- ALWAYS include macrons (ā, ē, ī, ō, ū, ȳ) in your text output.
+        `;
+        systemInstruction = classicalRules + systemInstruction; // Prepend instead of append
+      }
+
 
       const sessionPromise = ai.live.connect({
         model: 'gemini-2.5-flash-native-audio-preview-09-2025',

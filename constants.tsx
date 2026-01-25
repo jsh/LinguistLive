@@ -9,6 +9,7 @@ export const LANGUAGES: Language[] = [
   { code: 'nl-NL', name: 'Dutch', flag: '🇳🇱', welcomeMessage: "Laten we je Nederlands oefenen!" },
   { code: 'ja-JP', name: 'Japanese', flag: '🇯🇵', welcomeMessage: "日本語の練習をしましょう！" },
   { code: 'zh-CN', name: 'Chinese', flag: '🇨🇳', welcomeMessage: "让我们练习你的中文！" },
+  { code: 'la-VA', name: 'Latin', flag: '🏛️', welcomeMessage: "Latine loquāmur! (Let's speak Latin!)"},
 ];
 
 export const SCENARIOS: Scenario[] = [
