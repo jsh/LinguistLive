@@ -7,6 +7,8 @@ export const LANGUAGES: Language[] = [
   { code: 'fr-FR', name: 'French', flag: '🇫🇷', welcomeMessage: "Pratiquons votre français !" },
   { code: 'de-DE', name: 'German', flag: '🇩🇪', welcomeMessage: "Lass uns dein Deutsch üben!" },
   { code: 'nl-NL', name: 'Dutch', flag: '🇳🇱', welcomeMessage: "Laten we je Nederlands oefenen!" },
+  { code: 'ro-RO', name: 'Romanian', flag: '🇷🇴', welcomeMessage: "Să exersăm limba română!" },
+  { code: 'yi-IL', name: 'Yiddish', flag: '🕍', welcomeMessage: "לאָמיר רעדן ייִדיש! (Lomir redn yidish!)" },
   { code: 'ja-JP', name: 'Japanese', flag: '🇯🇵', welcomeMessage: "日本語の練習をしましょう！" },
   { code: 'zh-CN', name: 'Chinese', flag: '🇨🇳', welcomeMessage: "让我们练习你的中文！" },
   { code: 'la-VA', name: 'Latin', flag: '🏛️', welcomeMessage: "Latine loquāmur! (Let's speak Latin!)"},

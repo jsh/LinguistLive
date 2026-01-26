@@ -51,10 +51,8 @@ const VoiceChat: React.FC<VoiceChatProps> = ({ language, scenario, level }) => {
       setStatus(SessionStatus.CONNECTING);
       setError(null);
       
-      const apiKey = process.env.API_KEY;
-      if (!apiKey) throw new Error("API Key is missing");
-
-      const ai = new GoogleGenAI({ apiKey });
+      // Use process.env.API_KEY directly to initialize the GoogleGenAI instance.
+      const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
       
       const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
       mediaStreamRef.current = stream;
@@ -88,6 +86,7 @@ const VoiceChat: React.FC<VoiceChatProps> = ({ language, scenario, level }) => {
         - Keep the conversation flowing naturally as a partner in the role-play.
         - Be enthusiastic and patient.
         - Start by greeting the user and initiating the scenario immediately in ${language.name}.`;
+
     if (language.name === 'Latin') {
       const classicalRules = `
 CRITICAL INSTRUCTION: DO NOT CHANGE LATIN SPELLING.
@@ -107,8 +106,16 @@ AUDIO PRONUNCIATION (RESTORED CLASSICAL):
       systemInstruction = classicalRules + systemInstruction;
     }
 
+    if (language.name === 'Yiddish') {
+      systemInstruction += `
+        YIDDISH RULES:
+        - Please use Hebrew characters for all text transcriptions.
+        - Ensure a natural Ashkenazi accent in your speech generation.
+      `;
+    }
+
       const sessionPromise = ai.live.connect({
-        model: 'gemini-2.5-flash-native-audio-preview-09-2025',
+        model: 'gemini-2.5-flash-native-audio-preview-12-2025',
         config: {
           responseModalities: [Modality.AUDIO],
           speechConfig: {
@@ -129,6 +136,7 @@ AUDIO PRONUNCIATION (RESTORED CLASSICAL):
             scriptProcessor.onaudioprocess = (e) => {
               const inputData = e.inputBuffer.getChannelData(0);
               const pcmData = createPCMData(inputData);
+              // Use sessionPromise to prevent stale closures.
               sessionPromise.then((session) => {
                 session.sendRealtimeInput({ media: { data: pcmData, mimeType: 'audio/pcm;rate=16000' } });
               });
@@ -239,7 +247,8 @@ AUDIO PRONUNCIATION (RESTORED CLASSICAL):
         )}
 
         <div className="flex gap-4">
-          {status === SessionStatus.IDLE || status === SessionStatus.ERROR ? (
+          {/* Fix: Use status !== SessionStatus.ACTIVE to include CONNECTING in the "Start" button branch. */}
+          {status !== SessionStatus.ACTIVE ? (
             <button
               onClick={startSession}
               disabled={status === SessionStatus.CONNECTING}
