@@ -87,22 +87,25 @@ const VoiceChat: React.FC<VoiceChatProps> = ({ language, scenario, level }) => {
         - SPEAK ONLY IN ${language.name}. 
         - Keep the conversation flowing naturally as a partner in the role-play.
         - Be enthusiastic and patient.
-        - Start by greeting the user and initiating the scenario immediately in ${language.name}.
-      `;
- 
-      if (language.name === 'Latin') {
-        const classicalRules = `
-CRITICAL: YOU MUST USE RESTORED CLASSICAL PRONUNCIATION.
-- NEVER use Ecclesiastical (Church) pronunciation.
-- THE LETTER 'V' IS ALWAYS /w/ (like 'wine'), NEVER /v/.
-- THE LETTER 'C' IS ALWAYS HARD /k/ (like 'cat'), NEVER /ch/ or /s/.
-- THE LETTER 'G' IS ALWAYS HARD /g/ (like 'get'), NEVER /j/.
-- THE DIPHTHONG 'AE' IS /ai/ (like 'eye'), NEVER /ay/.
-- ALWAYS include macrons (ā, ē, ī, ō, ū, ȳ) in your text output.
-        `;
-        systemInstruction = classicalRules + systemInstruction; // Prepend instead of append
-      }
+        - Start by greeting the user and initiating the scenario immediately in ${language.name}.`;
+    if (language.name === 'Latin') {
+      const classicalRules = `
+CRITICAL INSTRUCTION: DO NOT CHANGE LATIN SPELLING.
+- ALWAYS use 'v' and 'c' in text (e.g., 'veni, vidi, vici'). NEVER write with a 'w'.
+- ALWAYS use macrons (ā, ē, ī, ō, ū, ȳ) for all text output.
 
+AUDIO PRONUNCIATION (RESTORED CLASSICAL):
+- Speak 'v' as the sound /w/ (like 'wine'). NEVER pronounce as /v/.
+- Speak 'c' ALWAYS as the hard sound /k/ (like 'kite'). NEVER pronounce 'ce' as 'che' or 'ci' as 'chi'.
+- Speak 'g' ALWAYS as the hard sound /g/ (like 'get'). NEVER pronounce 'ge' as 'je' or 'gi' as 'jee'.
+- Speak 'h' ALWAYS (as in 'house'). NEVER make it silent.
+- Speak 'y' as /y/ (rounded front vowel, like German 'ü').
+- Speak 'ae' as /ai/ (like 'eye') and 'oe' as /oy/ (like 'boy').
+- Speak 't' as /t/. NEVER sibilate 'ti' (e.g., 'natio' is 'nah-tee-oh').
+- For the word 'vici', the audio must be /WEE-KEE/, but the text must be 'vīcī'.`; 
+
+      systemInstruction = classicalRules + systemInstruction;
+    }
 
       const sessionPromise = ai.live.connect({
         model: 'gemini-2.5-flash-native-audio-preview-09-2025',
