@@ -1,0 +1,20 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Smoothly rounded app icon background -->
+  <rect width="512" height="512" rx="112" fill="#1E1B4B"/>
+  
+  <!-- Stylized minimalist globe -->
+  <circle cx="256" cy="256" r="160" stroke="#FBBF24" stroke-width="12" stroke-opacity="0.3"/>
+  <ellipse cx="256" cy="256" rx="60" ry="160" stroke="#FBBF24" stroke-width="12" stroke-opacity="0.3"/>
+  <path d="M96 256H416" stroke="#FBBF24" stroke-width="12" stroke-opacity="0.3"/>
+  
+  <!-- Central Communication / Linguistics Symbol -->
+  <path d="M180 200C180 183.431 193.431 170 210 170H302C318.569 170 332 183.431 332 200V260C332 276.569 318.569 290 302 290H240L190 330V290H180V200Z" fill="#FBBF24" stroke="#FBBF24" stroke-width="8"/>
+  
+  <!-- Inner 'L' for LinguistLive -->
+  <path d="M230 205V265H275" stroke="#1E1B4B" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>
+  
+  <!-- Elegant Gold Flare -->
+  <circle cx="332" cy="170" r="15" fill="#FBBF24" fill-opacity="0.8">
+    <animate attributeName="opacity" values="0.4;1;0.4" dur="3s" repeatCount="indefinite" />
+  </circle>
+</svg>
