@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { LANGUAGES, SCENARIOS, LEVELS } from './constants';
 import { Language, Scenario, ProficiencyLevel } from './types';
@@ -10,13 +9,13 @@ const App: React.FC = () => {
   const [selectedLevel, setSelectedLevel] = useState<ProficiencyLevel>('Intermediate');
   const [isLive, setIsLive] = useState(false);
 
+  const logoDataUri = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAMUlEQVR4nGP8z8BxyIAZCOmGgoYBZv4f/D/wPwOfBv4f+A8D9DPwHyY0DHBq4D9MaBhwagAA3z8f+Y5mU0EAAAAASUVORK5CYII=";
+
   return (
     <div className="min-h-screen flex flex-col items-center bg-gray-50 py-8 px-4 md:px-8">
       <header className="w-full max-w-4xl flex items-center justify-between mb-8">
         <div className="flex items-center gap-3">
-          <div className="w-12 h-12 bg-indigo-600 rounded-xl flex items-center justify-center text-white text-2xl font-bold shadow-lg">
-            L
-          </div>
+          <img src={logoDataUri} alt="LinguistLive Logo" className="w-12 h-12 bg-indigo-600 rounded-xl p-2 shadow-lg object-contain" />
           <div>
             <h1 className="text-2xl font-bold text-gray-900 leading-none">LinguistLive</h1>
             <p className="text-gray-500 text-sm">Powered by Gemini AI</p>
